@@ -28,5 +28,7 @@ module.exports.list = (event, context, callback) => {
       body: JSON.stringify(result.Items),
     };
     callback(null, response);
+
+    
   });
 };
