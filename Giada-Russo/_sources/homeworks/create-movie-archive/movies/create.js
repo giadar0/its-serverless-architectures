@@ -20,7 +20,7 @@ module.exports.create = (event, context, callback) => {
     return;
   }
 
-  const { title, duration } = data;
+  const { title, duration, director } = data;
 
   const params = {
     TableName: process.env.MOVIES_TABLE,
@@ -28,6 +28,7 @@ module.exports.create = (event, context, callback) => {
       id: uuid.v1(),
       title,
       duration,
+      director,
       watched: false,
       createdAt: timestamp,
       updatedAt: timestamp,

@@ -41,6 +41,11 @@ module.exports.update = (event, context, callback) => {
     durationPassed = true;
   }
 
+  let directorPassed = false;
+  if (typeof data.director == 'string') {
+    directorPassed = true;
+  }
+
   const params = {
     TableName: process.env.MOVIES_TABLE,
     Key: {
@@ -67,6 +72,12 @@ module.exports.update = (event, context, callback) => {
     params.UpdateExpression += ' , #movie_duration = :duration'
   }
 
+  if (directorPassed) {
+    params.ExpressionAttributeValues[':director'] = data.director;
+    params.ExpressionAttributeNames['#movie_director'] = 'director';    
+    params.UpdateExpression += ' , #movie_director = :director'
+  }
+  
   console.log(params);
 
   // update the todo in the database
