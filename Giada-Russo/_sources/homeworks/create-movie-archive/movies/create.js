@@ -19,7 +19,7 @@ module.exports.create = (event, context, callback) => {
     });
     return;
   }
-
+//director
   const { title, duration, director } = data;
 
   const params = {
